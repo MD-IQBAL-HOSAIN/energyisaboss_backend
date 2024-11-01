@@ -159,15 +159,42 @@
 
         <!-- User-->
         <li class="menu-header small text-uppercase"><span class="menu-header-text">User</span></li>
-
-        <li class="menu-item">
-            <a href="" class="menu-link">
-                <i class='menu-icon tf-icons bx bxs-user'></i>
-                <div data-i18n="Layouts">User</div>
-            </a>
-        </li>
+        @can('User List')
+            <li class="menu-item {{ Request::routeIs('user.*') ? 'active' : '' }}">
+                <a href="{{ route('user.index') }}" class="menu-link">
+                    <i class='menu-icon tf-icons bx bxs-user'></i>
+                    <div data-i18n="Layouts">User</div>
+                </a>
+            </li>
+        @endcan
 
         {{-- ..................................................... --}}
+
+        <!-- Role Permissions -->
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Role Permissions</span></li>
+        <!-- Layouts -->
+        <li
+            class="menu-item {{ Request::routeIs('permissions.*') || Request::routeIs('role.*') || Request::routeIs('addrolepermissions') ? 'active open' : '' }}">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-cog"></i>
+                <div data-i18n="Layouts">Role Permissions</div>
+            </a>
+
+            <ul class="menu-sub">
+                @can('Role List')
+                    <li
+                        class="menu-item {{ Request::routeIs('role.*') || Request::routeIs('addrolepermissions') ? 'active' : '' }}">
+                        <a class="menu-link" href="{{ route('role.index') }}">Roles</a>
+                    </li>
+                @endcan
+
+                <li
+                    class="menu-item {{ Request::routeIs('permissions.*') || Request::routeIs('permissions.create') ? 'active' : '' }}">
+                    <a class="menu-link" href="{{ route('permissions.index') }}">Permissions</a>
+                </li>
+                {{-- <li class="menu-item"><a class="menu-link" href="">Paypal</a></li> --}}
+            </ul>
+        </li>
 
 
 
