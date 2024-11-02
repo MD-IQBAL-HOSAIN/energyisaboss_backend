@@ -201,7 +201,7 @@
         <!-- Settings -->
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Settings</span></li>
         <!-- Layouts -->
-        <li class="menu-item">
+        <li class="menu-item {{ Request::routeIs('admin.system.setting') || Request::routeIs('system.mail.index') || Request::routeIs('social.media') || Request::routeIs('stripe.index') ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-cog"></i>
                 <div data-i18n="Layouts">Settings</div>
@@ -232,7 +232,7 @@
         {{-- ..................................................... --}}
 
         {{-- prifile seatting start --}}
-        <li class="menu-item {{ Request::routeIs('profilesetting') }}">
+        <li class="menu-item {{ Request::routeIs('profilesetting') ? 'active' : '' }}">
             <a class="menu-link" href="{{ route('profilesetting') }}">
                 <i class="menu-icon tf-icons bx bxs-user-account"></i>
                 <div data-i18n="Support">Profile Setting</div>
